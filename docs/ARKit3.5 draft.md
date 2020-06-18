@@ -62,9 +62,9 @@ So `ARGeometrySource` points to piece of `MTLBuffer`, which is an array of vecto
 
 Experimentally I found out, that for vertices and normals format is `MTLVertexFormat.float3`, i.e. 3 floats representing X, Y and Z coordinate of vertex / vector respectively.
 
-**TODO: Add format for classification**
+Format for classification is `MTLVertexFormat.uchar`, which represents raw value of `ARMeshClassification` enum.
 
-What also I found out is that amount of normals is the same as amount of *vertices*, not faces. This fact neither match documentation, which describes normals property as *rays that define which direction is outside for each face.*, nor it fits the general meaning of a normal.
+What I also found out is that amount of normals is the same as amount of *vertices*, not faces. This fact neither match documentation, which describes normals property as *rays that define which direction is outside for each face.*, nor it fits the general meaning of a normal.
 
 Next data type is [`ARGeometryElement`](https://developer.apple.com/documentation/arkit/argeometryelement), which is used for faces description. It also contains a Metal `buffer: MTLVertexFormat`. Buffer contains an array of array of vertex indices. Each element in buffer represent face. Face is represented by fixed amount of numbers (`indexCountPerPrimitive`). Each number is a vertex index.
 
@@ -157,10 +157,10 @@ extension  SCNGeometryPrimitiveType {
 
 And here is the result:
 
-![Mesh split visualisation](https://github.com/evstinik/arkit3.5-scenereconstruction-visualization/blob/master/docs/RPReplay_Final1590411087_downsized_trimed.gif?raw=true](https://github.com/evstinik/arkit3.5-scenereconstruction-visualization/blob/master/docs/RPReplay_Final1590411087_downsized_trimed.gif?raw=true))
+![Mesh split visualisation](https://github.com/evstinik/arkit3.5-scenereconstruction-visualization/blob/master/docs/RPReplay_Final1590411087_downsized_trimed.gif?raw=true](https://github.com/evstinik/arkit3.5-scenereconstruction-visualization/blob/master/docs/RPReplay_Final1590411087_downsized_trimed.gif?raw=true)
 
 As we can see the ARKit produces "square" meshes 1m x 1m approximately. Some of them may overlap with each other. 
 
 ## Conclusion
 
-TODO 
+This small finding can be explained as a way Apple simplifies complex problem. But it's only first part of what we discovered. Stay tuned to read more.
